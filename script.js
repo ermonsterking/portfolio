@@ -26,6 +26,7 @@
       function createSparkle(x, y) {
         const spark = document.createElement("div");
         spark.className = "sparkle";
+        spark.className = "sparkle";
         spark.style.left = x + "px";
         spark.style.top = y + "px";
         area.appendChild(spark);
@@ -61,3 +62,4 @@
       animate();
     });
   
+    
