@@ -1,98 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Avineesh Kumar | Portfolio</title>
-     <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avineesh Kumar | AI & ML Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        body { font-family: 'Fira+Code', monospace; background-color: #010409; color: #f8fafc; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* High-Visibility Neuron Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+            background-color: #010409;
+        }
+
+        .content-wrapper { position: relative; z-index: 10; }
+
+        /* UI Elements & Animations */
+        .scanline { 
+            width: 100%; height: 2px; background: rgba(34, 197, 94, 0.15); 
+            position: absolute; animation: scan 6s linear infinite; z-index: 5; pointer-events: none;
+        }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        
+        .glitch:hover { text-shadow: 2px 0 #00ff00, -2px 0 #ff00ff; }
+        .rec-dot { height: 10px; width: 10px; background-color: #ef4444; border-radius: 50%; display: inline-block; animation: flicker 1.5s infinite; }
+        @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        /* Timeline Path Styling */
+        .route-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, #22c55e 0%, transparent 100%); z-index: 0; }
+        .stop-node { position: relative; z-index: 10; background: #010409; border: 2px solid #22c55e; width: 20px; height: 20px; border-radius: 50%; box-shadow: 0 0 15px #22c55e; }
+        
+        .corner-box::before, .corner-box::after, .corner-box span::before, .corner-box span::after {
+            content: ''; position: absolute; width: 20px; height: 20px; border-color: #22c55e; border-style: solid;
+        }
+        .corner-box::before { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+        .corner-box::after { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+        .corner-box span::before { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+        .corner-box span::after { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+        .glass-panel { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(34, 197, 94, 0.2); }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>Avineesh Kumar</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<body class="selection:bg-green-500 selection:text-black">
+  <nav class="fixed top-0 left-0 w-full z-[100] border-b border-green-500/20 bg-black/80 backdrop-blur-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-mono font-bold text-green-500 tracking-tighter flex items-center gap-2">
+                <span class="h-2 w-2 bg-green-500 rounded-full animate-pulse"></span>
+                AVINEESH_KUMAR.v2
+            </div>
+
+            <div class="hidden md:flex gap-8 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                <a href="#" class="hover:text-green-500 transition-colors">/HOME</a>
+                <a href="#experience" class="hover:text-green-500 transition-colors">/ROUTE</a>
+                <a href="#skills" class="hover:text-green-500 transition-colors">/MATRIX</a>
+                <a href="#projects" class="hover:text-green-500 transition-colors">/MODELS</a>
+                <a href="#glory" class="hover:text-green-500 transition-colors">/GLORY</a>
+                <a href="#contact" class="px-3 py-1 border border-green-500/50 text-green-500 hover:bg-green-500 hover:text-black transition-all">/CONTACT</a>
+            </div>
+
+            <div class="md:hidden text-green-500 font-mono text-[10px] font-bold">
+                [SYS_ACTIVE]
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <section id="home" class="home-section">
-    <div class="intro-text">
-      <h2>Hello, I'm Avineesh 👋</h2>
-      <p>Aspiring Frontend Developer | CSE @ BCE Bhagalpur</p>
-      <p>ReactJS & UI/UX enthusiast, passionate about building beautiful and functional web interfaces.</p>
-    </div>
-    <div class="intro-image">
-      <img src="profile.png" alt="Avineesh Kumar" />
-    </div>
-  </section>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Avineesh Kumar | Portfolio</title>
-  
+    <div id="particles-js"></div>
 
+    <div class="content-wrapper">
 
-  
+        <section class="relative min-h-screen flex flex-col justify-center items-center px-4 pt-16 overflow-hidden border-b border-slate-800">
+            <div class="scanline"></div>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10 w-full p-4">
+                <div class="flex justify-center items-center relative order-2 md:order-1">
+                    <div class="corner-box relative p-2 glass-panel border border-slate-700">
+                        <span class="absolute block w-full h-full top-0 left-0"></span>
+                        <div class="flex justify-between items-center text-[10px] text-green-500 pb-2 px-1 font-bold">
+                            <span>[ STATUS: ACTIVE ]</span>
+                            <div class="flex items-center gap-1.5"><span class="rec-dot"></span><span>LIVE_FEED</span></div>
+                        </div>
+                        <img src="profile.png" alt="Avineesh Kumar" class="w-72 h-72 md:w-80 md:h-80 object-cover border border-slate-700 grayscale hover:grayscale-0 transition-all duration-700" />
+                        <div class="absolute -bottom-5 left-0 bg-green-500 text-black text-[11px] px-2 py-0.5 font-bold shadow-lg">
+                            CLASS: LEAD_ML_ENGINEER | CONF: 0.992
+                        </div>
+                    </div>
+                </div>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <img src="image2.png" alt="Portfolio Website Screenshot" />
-      <div>
-        <h3>Portfolio Website</h3>
-        <p>Built with HTML, CSS, JS, ReactJS, Tailwind — Showcases my skills & projects. Improved visibility by 20%.</p>
-      </div>
-    </div>
-    <div class="project">
-      <img src="image3.png" alt="Security Company Landing Page" />
-      <div>
-        <h3>Security Company Landing Page</h3>
-        <p>Landing page using HTML, CSS, JS, and Fetch API — responsive & user-friendly design for a security firm.</p>
-      </div>
-    </div>
-    <div class="project">
-      <img src="image1.png" alt="Web Calculator" />
-      <div>
-        <h3>Web Calculator</h3>
-        <p>Responsive calculator built using ReactJS and Tailwind — enables accurate basic calculations.</p>
-      </div>
-    </div>
-  </section>
+                <div class="text-center md:text-left order-1 md:order-2">
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-2 glitch uppercase">Avineesh <span class="text-green-500">Kumar</span></h1>
+                    <p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                        Final-year CSE student at BCE Bhagalpur specializing in AI, Machine Learning, and Deep Learning[cite: 4, 56, 57]. 
+                        Experienced in building end-to-end ML pipelines for Medical Imaging and NLP[cite: 5, 6].
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <section id="skills">
-    <h2>Tech Stack</h2>
-    <div id="logo-area">
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind CSS" />
-      <img class="floating-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-    </div>
-  </section>
+        <section class="py-24 px-6 relative overflow-hidden bg-slate-950/40">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold mb-20 text-center uppercase tracking-widest font-mono text-green-500">// Career_Route_Mapping</h2>
+                <div class="relative">
+                    <div class="route-line hidden md:block"></div>
+                    
+                    <div class="mb-20 flex flex-col md:flex-row items-center w-full">
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <span class="text-green-500 font-bold text-sm">DEC 2025 - JAN 2026 [cite: 12]</span>
+                            <h3 class="text-2xl font-bold mt-1 uppercase text-white">IIIT Bhagalpur [cite: 11]</h3>
+                            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Machine Learning Research Intern. Developed hybrid YOLOv8+CNN for Diabetic Foot Ulcer detection[cite: 10, 13]. Co-authored IEEE CICN 2026 research[cite: 15].</p>
+                        </div>
+                        <div class="stop-node my-4 md:my-0"></div>
+                        <div class="md:w-1/2 md:pl-12"></div>
+                    </div>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:kumaravineesh398@gmail.com">kumaravineesh398@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/avineesh-kumar-aa6b18284" target="_blank">linkedin.com/in/avineesh-kumar</a></p>
-    <p>GitHub: <a href="https://github.com/ermonsterking" target="_blank">github.com/ermonsterking</a></p>
-  </section>
+                    <div class="mb-20 flex flex-col md:flex-row items-center w-full">
+                        <div class="md:w-1/2 md:pr-12"></div>
+                        <div class="stop-node my-4 md:my-0"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <span class="text-green-500 font-bold text-sm">INTERNSHIP PHASE [cite: 17]</span>
+                            <h3 class="text-2xl font-bold mt-1 uppercase text-white">Angle Two Innovations [cite: 18]</h3>
+                            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Software Developer Intern. Built scalable web features and optimized application performance in Agile environments[cite: 17, 19, 20].</p>
+                        </div>
+                    </div>
 
-  <footer>
-    <p>© 2025 Avineesh Kumar. All rights reserved.</p>
-  </footer>
+                    <div class="flex flex-col md:flex-row items-center w-full">
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <span class="text-green-500 font-bold text-sm">PERFORMANCE OPTIMIZATION [cite: 21]</span>
+                            <h3 class="text-2xl font-bold mt-1 uppercase text-white">Bevarc Construction [cite: 22]</h3>
+                            <p class="text-slate-400 mt-2 text-sm leading-relaxed">Software Developer Intern. Enhanced UI performance by 10% and reduced load times via layout optimization[cite: 21, 23].</p>
+                        </div>
+                        <div class="stop-node my-4 md:my-0"></div>
+                        <div class="md:w-1/2 md:pl-12"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script src="script.js"></script> 
+        <section id="projects" class="py-24 px-6 border-y border-slate-900 bg-black/60 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-bold mb-16 uppercase tracking-widest text-green-500 font-mono"><span class="animate-pulse">_</span>PRIMARY_MODELS</h2>
+                <div class="grid md:grid-cols-2 gap-10 font-mono text-xs">
+                    
+                    <div class="group border border-slate-800 p-8 hover:border-green-500/50 transition-all bg-slate-950/50 relative">
+                        <div class="absolute top-2 right-2 text-green-500 text-[9px] font-bold uppercase">CONF: 0.982 [cite: 31]</div>
+                        <h3 class="text-xl font-bold mb-4 uppercase text-white tracking-tighter">Diabetic Foot Ulcer Detection</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm font-sans">
+                            Designed hybrid YOLOv8+CNN for lesion detection and classification[cite: 25, 29]. Processed 5000+ images with full augmentation pipeline[cite: 30]. Achieved Precision: 0.90, Recall: 0.95[cite: 31].
+                        </p>
+                        <div class="flex gap-6 mt-4">
+                            <a href="https://github.com/ermonsterking/Diabetic_Foot_Ulcer_Detection_Model" target="_blank" class="text-green-500 hover:text-white transition-colors font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">/SOURCE_CODE</a>
+                            <a href="#" class="text-slate-500 hover:text-green-500 transition-colors font-bold uppercase tracking-widest">/LIVE_DEMO</a>
+                        </div>
+                    </div>
+
+                    <div class="group border border-slate-800 p-8 hover:border-green-500/50 transition-all bg-slate-950/50 relative">
+                        <div class="absolute top-2 right-2 text-green-500 text-[9px] font-bold uppercase">CONF: 0.955 [cite: 37]</div>
+                        <h3 class="text-xl font-bold mb-4 uppercase text-white tracking-tighter">Spam Email Detection System</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm font-sans">
+                            Built NLP pipeline using TF-IDF and Naive Bayes, achieving 98% accuracy[cite: 37]. Deployed end-to-end via FastAPI and Render for real-time inference[cite: 41].
+                        </p>
+                        <div class="flex gap-6 mt-4">
+                            <a href="https://github.com/ermonsterking/-sms-spam-detection" target="_blank" class="text-green-500 hover:text-white transition-colors font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">/SOURCE_CODE</a>
+                            <a href="https://sms-spam-detection-mdoi.onrender.com/" target="_blank" class="text-green-500 hover:text-white transition-colors font-bold uppercase tracking-widest underline decoration-2 underline-offset-4">/RUN_INFERENCE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 border-t border-slate-900 bg-slate-950/30">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-16 uppercase tracking-widest text-green-500 font-mono">
+                    <span class="animate-pulse mr-2">●</span> AUXILIARY_MODULES
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="group border border-slate-800 p-8 hover:bg-green-500/5 transition-all relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-2 text-[9px] bg-slate-800 text-slate-400 font-mono uppercase">ID: REGRESSION_01</div>
+                        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter text-white">House Price Prediction System</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed font-sans">
+                            Built robust regression models using <b>Linear Regression</b> and <b>Random Forest</b>[cite: 33]. Optimized RMSE using GridSearchCV[cite: 35].
+                        </p>
+                        
+                        <div class="flex gap-6">
+                            <a href="https://github.com/ermonsterking/House_price_prediction_model" class="text-green-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest underline underline-offset-4">/VIEW_REPO</a>
+                            <div class="border border-slate-700 px-3 py-1 text-center"><span class="text-[10px] text-slate-500 block">R²_SCORE</span><span class="text-green-500 font-bold">0.88</span></div>
+                        </div>
+                    </div>
+
+                    <div class="group border border-slate-800 p-8 hover:bg-green-500/5 transition-all relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-2 text-[9px] bg-slate-800 text-slate-400 font-mono uppercase">ID: NLP_01</div>
+                        <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter text-white">NLP Detection Pipeline</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed font-sans">
+                            Tokenization and text preprocessing pipeline achieving 97% precision[cite: 37, 38]. Evaluated with Confusion Matrix and ROC-AUC[cite: 38].
+                        </p>
+                        <div class="flex gap-6">
+                            <a href="#" class="text-green-500 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest underline underline-offset-4">/ACCESS_MODULE</a>
+                            <div class="border border-slate-700 px-3 py-1 text-center"><span class="text-[10px] text-slate-500">PRECISION</span><span class="text-green-500 font-bold ml-2">0.97</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 border-y border-slate-800 bg-black/60 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-16 uppercase tracking-widest text-green-500 font-mono">System_Glory_Output</h2>
+                
+                <div class="flex flex-col items-center gap-8 font-mono">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <div class="group p-8 border border-slate-800 hover:border-green-500 transition-all bg-slate-900/40 backdrop-blur-sm relative">
+                            <div class="absolute -top-2 -left-2 bg-green-500 text-black px-2 py-0.5 text-[8px] font-bold">LEAD_NODE_01</div>
+                            <div class="text-3xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors uppercase">COORDINATOR [cite: 54]</div>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">Training & Placement Office [cite: 54]</p>
+                        </div>
+
+                        <div class="group p-8 border border-slate-800 hover:border-green-500 transition-all bg-slate-900/40 backdrop-blur-sm relative">
+                            <div class="absolute -top-2 -left-2 bg-green-500 text-black px-2 py-0.5 text-[8px] font-bold">LEAD_NODE_02</div>
+                            <div class="text-3xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors uppercase">PRESIDENT [cite: 52]</div>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">Udaan Sports Club [cite: 52]</p>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex flex-col items-center opacity-30">
+                        <div class="w-px h-10 bg-green-500"></div>
+                        <div class="w-[60%] h-px bg-green-500"></div>
+                        <div class="flex justify-between w-[60%]">
+                            <div class="w-px h-10 bg-green-500"></div>
+                            <div class="w-px h-10 bg-green-500"></div>
+                            <div class="w-px h-10 bg-green-500"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                        <div class="group p-6 border border-slate-800 hover:border-green-500 transition-all bg-slate-900/20 backdrop-blur-sm">
+                            <div class="text-2xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors">TOP 10% [cite: 51]</div>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">JEE Mains 2022 [cite: 51]</p>
+                        </div>
+
+                        <div class="group p-6 border border-slate-800 hover:border-green-500 transition-all bg-slate-900/20 backdrop-blur-sm">
+                            <div class="text-2xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors">WINNER [cite: 53]</div>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">SIH Internal Round [cite: 53]</p>
+                        </div>
+
+                        <div class="group p-6 border border-slate-800 hover:border-green-500 transition-all bg-slate-900/20 backdrop-blur-sm">
+                            <div class="text-2xl font-bold text-white mb-2 group-hover:text-green-500 transition-colors">ELITE [cite: 50]</div>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">NPTEL DBMS (IITKGP) [cite: 50]</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+        <section class="py-20 px-6 bg-slate-900/30 border-t border-slate-900">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl font-bold mb-8 uppercase tracking-widest text-green-500 font-mono">// Resume_Inference</h2>
+                <div class="glass-panel p-10 border-dashed border-2 border-green-500/30 group hover:border-green-500 transition-all duration-500">
+                    <p class="text-slate-400 mb-8 font-mono text-sm">
+                        Access the full technical documentation of Avineesh_Kumar.exe[cite: 3]. 
+                        Contains detailed internship logs and research methodologies[cite: 9, 13, 15].
+                    </p>
+                    <a href="https://drive.google.com/file/d/1pAILcqxPHaCN_BqvYw1hTc4Use1lZ7i2/view?usp=drive_link" download class="inline-flex items-center gap-4 bg-green-600 text-black px-10 py-4 font-bold uppercase tracking-widest hover:bg-green-400 transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="vertical-align: middle; 4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download_Resume_v2.0
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-24 px-6 border-t border-slate-900 bg-black/20">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-16 uppercase tracking-widest text-green-500 font-mono">
+                    <span class="mr-2">></span> SKILL_MATRIX_DATA
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    
+                    <div class="space-y-8">
+                        <h3 class="text-white font-bold uppercase border-b-2 border-green-500/50 pb-3 mb-6 tracking-tighter text-2xl">AI & Deep Learning </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>YOLOv8 / CNN [cite: 7, 44]</span>
+                                    <span class="text-green-500">95%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[95%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>PyTorch / TensorFlow [cite: 7, 44]</span>
+                                    <span class="text-green-500">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[90%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>Scikit-Learn [cite: 7, 43]</span>
+                                    <span class="text-green-500">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[85%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <h3 class="text-white font-bold uppercase border-b-2 border-green-500/50 pb-3 mb-6 tracking-tighter text-2xl">Core Development [cite: 46]</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>Python / C++ [cite: 46]</span>
+                                    <span class="text-green-500">92%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[92%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>FastAPI / REST APIs </span>
+                                    <span class="text-green-500">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[80%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>SQL / MySQL [cite: 47]</span>
+                                    <span class="text-green-500">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[75%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <h3 class="text-white font-bold uppercase border-b-2 border-green-500/50 pb-3 mb-6 tracking-tighter text-2xl">MLOps & Infrastructure [cite: 47]</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>Git / GitHub [cite: 47]</span>
+                                    <span class="text-green-500">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[88%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>Render / Streamlit </span>
+                                    <span class="text-green-500">82%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[82%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm md:text-base font-mono text-slate-300 mb-2 font-bold uppercase tracking-tight">
+                                    <span>Data Preprocessing [cite: 45]</span>
+                                    <span class="text-green-500">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-2"><div class="bg-green-500 h-full w-[80%] shadow-[0_0_15px_#22c55e]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        
+        
+        <section class="py-24 px-6 bg-slate-950/40 border-t border-slate-900">
+            <div class="max-w-6xl mx-auto relative z-10">
+                <h2 class="text-3xl font-bold mb-16 uppercase tracking-widest text-green-500 font-mono"><span class="mr-2">></span> ACADEMIC_CONFIGURATION</h2>
+                <div class="border border-green-500/30 glass-panel p-8 md:p-12 relative">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b border-slate-800 pb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white uppercase tracking-tighter">Bhagalpur College of Engineering</h3>
+                            <p class="text-green-500 font-mono text-sm mt-1">B.Tech in Computer Science and Engineering [cite: 57]</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 text-right font-mono text-xs text-slate-500">
+                            <span class="block">TIMELINE: 2022 - PRESENT [cite: 58]</span>
+                            <span class="block">LOCATION: Bihar, India [cite: 56]</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-mono">
+                        <div class="bg-black/40 p-6 border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block mb-1 uppercase tracking-widest font-bold">Current_CGPA</span>
+                            <div class="text-3xl font-bold text-white">8.06<span class="text-sm text-slate-600">/10</span> [cite: 58]</div>
+                            <div class="w-full bg-slate-800 h-1.5 mt-3"><div class="bg-green-500 h-full w-[80.6%] shadow-[0_0_10px_#22c55e]"></div></div>
+                        </div>
+                        <div class="bg-black/40 p-6 border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block mb-1 uppercase tracking-widest font-bold">Domain_Focus</span>
+                            <div class="text-xl font-bold text-white uppercase mt-1">AI & Machine Learning [cite: 4]</div>
+                        </div>
+                        <div class="bg-black/40 p-6 border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block mb-1 uppercase tracking-widest font-bold">Current_Phase</span>
+                            <div class="text-xl font-bold text-green-500 uppercase animate-pulse mt-1">Final Year [cite: 4]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 px-6 bg-slate-950/60">
+            <div class="max-w-4xl mx-auto border border-green-500/20 p-8 md:p-16 glass-panel relative">
+                <div class="absolute top-0 right-10 bg-green-500 text-black px-4 py-1 text-[9px] font-bold uppercase tracking-widest">Port_398_Active</div>
+                
+                <h2 class="text-3xl font-bold mb-8 uppercase tracking-tighter text-white font-mono">Establish_Connection</h2>
+                <div class="grid md:grid-cols-2 gap-12 font-mono text-sm">
+                    <div class="space-y-6">
+                        <p class="text-slate-400 leading-relaxed">
+                            Currently exploring <span class="text-green-500">LLMs, RAG pipelines, and agent-based AI systems</span>. 
+                            Available for research collaborations or scalable AI solution development.
+                        </p>
+                        <div class="space-y-3 pt-4 border-t border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <span class="text-green-500">EMAIL:</span>
+                                <a href="mailto:kumaravineesh398@gmail.com" class="hover:underline underline-offset-4 tracking-tight text-white transition-colors">kumaravineesh398@gmail.com [cite: 3]</a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-green-500">PHONE:</span>
+                                <span class="text-white">+91 8252548259 [cite: 2]</span>
+                            </div>
+                             <div class="flex items-center gap-3">
+                                <span class="text-green-500">LINKDIN:</span>
+                                                                <a href="https://www.linkedin.com/in/avineesh-kumar/" class="hover:underline underline-offset-4 tracking-tight text-white transition-colors" target="_blank">LinkedIn Profile [cite: 3]</a>
+
+                              </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-green-500">BASE:</span>
+                                <span class="text-white">BCE Bhagalpur Campus, Bihar [cite: 56]</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <form class="space-y-4">
+                        <div class="relative">
+                            <input type="text" placeholder="USER_ID / NAME" class="w-full bg-slate-800/50 border border-slate-700 p-3 text-xs focus:outline-none focus:border-green-500 text-white transition-all" />
+                        </div>
+                        <div class="relative">
+                            <input type="email" placeholder="CONTACT_ADDRESS" class="w-full bg-slate-800/50 border border-slate-700 p-3 text-xs focus:outline-none focus:border-green-500 text-white transition-all" />
+                        </div>
+                        <div class="relative">
+                            <textarea placeholder="MESSAGE_DATA" rows="4" class="w-full bg-slate-800/50 border border-slate-700 p-3 text-xs focus:outline-none focus:border-green-500 text-white transition-all resize-none"></textarea>
+                        </div>
+                        <button class="w-full bg-green-600 text-black font-bold py-3 hover:bg-green-400 transition-all uppercase text-xs tracking-[0.2em]">Transmit_Packet</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-10 text-center border-t border-slate-900 bg-black/80 backdrop-blur-sm relative z-10">
+            <p class="text-[10px] text-slate-600 tracking-widest font-mono uppercase">© 2026 AVINEESH_KUMAR // SEED:8.06_CGPA // CSE_UNITS // BCE_BHAGALPUR</p>
+        </footer>
+
+    </div> <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 110, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#22c55e" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.8, "random": false, "anim": { "enable": true, "speed": 1, "opacity_min": 0.3 } },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#22c55e", "opacity": 0.5, "width": 1.5 },
+                    "move": { "enable": true, "speed": 2.5, "direction": "none", "out_mode": "out" }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+                    "modes": { "grab": { "distance": 220, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+                },
+                "retina_detect": true
+            });
+        });
+    </script>
 </body>
 </html>
-
- 
-
-  
-
